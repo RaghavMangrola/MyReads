@@ -8,28 +8,40 @@ class App extends Component {
         super(props)
 
         this.state = {
-            currentlyReading: ["Harry Potter", "Star Wars"],
-            wantToRead: ["Ready Player One"],
-            read: ["Game of Thrones"]
+            books: []
         }
     }
 
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
-            const currentlyReading = books.filter((book) => book.shelf === "currentlyReading")
-            const wantToRead = books.filter((book) => book.shelf === "wantToRead")
-            const read = books.filter((book) => book.shelf === "read")
-
-            this.setState({ currentlyReading, wantToRead, read })
+            this.setState({ books })
         })
     }
 
+    changeShelf = (book, shelf) => {
+        book.shelf = shelf
+
+        this.setState((state) => {
+            state.books.filter((b) => b.id !== book.id).concat(book)
+        })
+
+        BooksAPI.update(book, shelf)
+    }
+
+
     render() {
+
+        const { books } = this.state
+
+        const currentlyReading = books.filter((book) => book.shelf === "currentlyReading")
+        const wantToRead = books.filter((book) => book.shelf === "wantToRead")
+        const read = books.filter((book) => book.shelf === "read")
+
         return (
             <div>
-                <Bookshelf books={this.state.currentlyReading} title="Currently Reading"/>
-                <Bookshelf books={this.state.wantToRead} title="Want To Read"/>
-                <Bookshelf books={this.state.read} title="Read"/>
+                <Bookshelf books={currentlyReading} title="Currently Reading" bookshelf="currentlyReading" onChangeShelf={this.changeShelf}/>
+                <Bookshelf books={wantToRead} title="Want To Read" bookshelf="wantToRead" onChangeShelf={this.changeShelf}/>
+                <Bookshelf books={read} title="Read" bookshelf="read" onChangeShelf={this.changeShelf}/>
             </div>
         )
     }
