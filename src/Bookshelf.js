@@ -3,10 +3,6 @@ import PropTypes from 'prop-types'
 
 export default class Bookshelf extends Component {
 
-    constructor(props) {
-        super(props)
-    }
-
     render() {
 
         const { books, title } = this.props
@@ -14,15 +10,20 @@ export default class Bookshelf extends Component {
         return (
             <div>
                 <h1>{title}</h1>
-                {books.map((book) => (
-                    <p>{book}</p>
-                ))}
+                <ol>
+                    {books.map((book) => (
+                        <li key={ book.id }>
+                            <p>{ book.title }</p>
+                        </li>
+                    ))}
+                </ol>
+
             </div>
         )
     }
 }
 
 Bookshelf.propTypes = {
-    books: PropTypes.arrayOf(PropTypes.string).isRequired,
+    books: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired
 }
