@@ -7,13 +7,20 @@ class App extends Component {
         super(props)
 
         this.state = {
-            books: ["Harry Potter", "Star Wars"]
+            booksCurrentlyReading: ["Harry Potter", "Star Wars"],
+            booksWantToRead: ["Ready Player One"],
+            booksRead: ["Game of Thrones"]
         }
     }
 
     render() {
         return (
-            <Bookshelf books={this.state.books}/>
+            <div>
+                <Bookshelf books={this.state.booksCurrentlyReading} title="Currently Reading"/>
+                <Bookshelf books={this.state.booksWantToRead} title="Want To Read"/>
+                <Bookshelf books={this.state.booksRead} title="Read"/>
+            </div>
+
         )
     }
 }

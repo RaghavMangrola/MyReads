@@ -9,10 +9,11 @@ export default class Bookshelf extends Component {
 
     render() {
 
-        const { books } = this.props
+        const { books, title } = this.props
 
         return (
             <div>
+                <h1>{title}</h1>
                 {books.map((book) => (
                     <p>{book}</p>
                 ))}
@@ -22,5 +23,6 @@ export default class Bookshelf extends Component {
 }
 
 Bookshelf.propTypes = {
-    books: PropTypes.arrayOf(PropTypes.string).isRequired
+    books: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired
 }
