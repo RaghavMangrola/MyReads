@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Book from './Book'
 
 export default class Bookshelf extends Component {
 
@@ -12,16 +13,7 @@ export default class Bookshelf extends Component {
                 <h1>{title}</h1>
                 <ol>
                     {books.map((book) => (
-                        <li key={ book.id }>
-                            <p>{ book.title }</p>
-                            <select value={bookshelf} onChange={(e) => onChangeShelf(book, e.target.value)}>
-                                <option value="none" disabled>Move to...</option>
-                                <option value="currentlyReading">Currently Reading</option>
-                                <option value="wantToRead">Want To Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
-                            </select>
-                        </li>
+                        <Book book={ book } bookshelf={ bookshelf } onChangeShelf={ onChangeShelf }/>
                     ))}
                 </ol>
             </div>
