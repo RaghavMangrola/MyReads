@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Bookshelf from './Bookshelf'
 import * as BooksAPI from './BooksAPI'
 
-class App extends Component {
+export default class App extends Component {
 
     constructor(props) {
         super(props)
@@ -28,7 +28,6 @@ class App extends Component {
         BooksAPI.update(book, shelf)
     }
 
-
     render() {
 
         const { books } = this.state
@@ -46,5 +45,3 @@ class App extends Component {
         )
     }
 }
-
-export default App;
