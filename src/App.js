@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import Bookshelf from './Bookshelf'
 import * as BooksAPI from './BooksAPI'
+import SearchBar from "./SearchBar"
+
+// TODO Create Searchbar Component
+// TODO Search 300ms after user is done typing
+// TODO Display Books on page
+// TODO Books need to be updated to display on current shelf
+// TODO Create Route
 
 export default class App extends Component {
 
@@ -38,6 +45,7 @@ export default class App extends Component {
 
         return (
             <div>
+                <SearchBar/>
                 <Bookshelf books={currentlyReading} title="Currently Reading" bookshelf="currentlyReading" onChangeShelf={this.changeShelf}/>
                 <Bookshelf books={wantToRead} title="Want To Read" bookshelf="wantToRead" onChangeShelf={this.changeShelf}/>
                 <Bookshelf books={read} title="Read" bookshelf="read" onChangeShelf={this.changeShelf}/>
