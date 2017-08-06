@@ -5,8 +5,14 @@ export default class SearchBar extends Component {
 
     render() {
 
+        const { onSearch } = this.props
+
         return(
-            <input/>
+            <input onChange={(e) => onSearch(e.target.value)}/>
         )
     }
+}
+
+SearchBar.propTypes = {
+    onSearch: PropTypes.func.isRequired
 }

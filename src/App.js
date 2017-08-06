@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar"
 
 // TODO Create Searchbar Component
 // TODO Search 300ms after user is done typing
-// TODO Display Books on page
+// TODO Display Books on SearchResultsComponent
 // TODO Books need to be updated to display on current shelf
 // TODO Create Route
 
@@ -35,6 +35,10 @@ export default class App extends Component {
         BooksAPI.update(book, shelf)
     }
 
+    searchBooks = (query) => {
+        console.log(BooksAPI.search(query, 10))
+    }
+
     render() {
 
         const { books } = this.state
@@ -45,7 +49,7 @@ export default class App extends Component {
 
         return (
             <div>
-                <SearchBar/>
+                <SearchBar onSearch={this.searchBooks}/>
                 <Bookshelf books={currentlyReading} title="Currently Reading" bookshelf="currentlyReading" onChangeShelf={this.changeShelf}/>
                 <Bookshelf books={wantToRead} title="Want To Read" bookshelf="wantToRead" onChangeShelf={this.changeShelf}/>
                 <Bookshelf books={read} title="Read" bookshelf="read" onChangeShelf={this.changeShelf}/>
