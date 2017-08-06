@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Book from './Book'
+import Book from "./Book"
 
-export default class Bookshelf extends Component {
+export default class SearchResults extends Component {
 
     render() {
 
-        const { books, title, onChangeShelf } = this.props
+        const { books, onChangeShelf } = this.props
 
-        return (
+        return(
             <div>
-                <h1>{title}</h1>
                 <ol>
                     {books.map((book) => (
                         <li key={ book.id }>
-                        <Book book={ book } bookshelf={ book.shelf } onChangeShelf={ onChangeShelf }/>
+                        <Book book={book} bookshelf={book.shelf} onChangeShelf={onChangeShelf}/>
                         </li>
                     ))}
                 </ol>
@@ -23,8 +22,7 @@ export default class Bookshelf extends Component {
     }
 }
 
-Bookshelf.propTypes = {
+SearchResults.propTypes = {
     books: PropTypes.array.isRequired,
-    title: PropTypes.string.isRequired,
     onChangeShelf: PropTypes.func.isRequired
 }

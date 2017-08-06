@@ -8,7 +8,7 @@ export default class Book extends Component {
         const { book, bookshelf, onChangeShelf } = this.props
 
         return(
-            <li key={ book.id }>
+            <div>
                 <p>{ book.title }</p>
                 <select value={bookshelf} onChange={(e) => onChangeShelf(book, e.target.value)}>
                     <option value="none" disabled>Move to...</option>
@@ -17,7 +17,7 @@ export default class Book extends Component {
                     <option value="read">Read</option>
                     <option value="none">None</option>
                 </select>
-            </li>
+            </div>
         )
     }
 }
