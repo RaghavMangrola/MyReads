@@ -3,6 +3,7 @@ import Bookshelf from './Bookshelf'
 import * as BooksAPI from './BooksAPI'
 import SearchBar from "./SearchBar"
 import SearchResults from "./SearchResults"
+import './App.css'
 
 // TODO Create Searchbar Component
 // TODO Search 300ms after user is done typing
@@ -52,12 +53,17 @@ export default class App extends Component {
         const read = books.filter((book) => book.shelf === "read")
 
         return (
-            <div>
-                <SearchBar onSearch={this.searchBooks}/>
-                <SearchResults books={searchResults} onChangeShelf={this.changeShelf}/>
-                <Bookshelf books={currentlyReading} title="Currently Reading" onChangeShelf={this.changeShelf}/>
-                <Bookshelf books={wantToRead} title="Want To Read" onChangeShelf={this.changeShelf}/>
-                <Bookshelf books={read} title="Read" onChangeShelf={this.changeShelf}/>
+            <div className="app">
+                <div className="list-books-title">
+                    <h1>MyReads</h1>
+                </div>
+                {/*<SearchBar onSearch={this.searchBooks}/>*/}
+                {/*<SearchResults books={searchResults} onChangeShelf={this.changeShelf}/>*/}
+                <div className="list-books-content">
+                    <Bookshelf books={currentlyReading} title="Currently Reading" onChangeShelf={this.changeShelf}/>
+                    <Bookshelf books={wantToRead} title="Want To Read" onChangeShelf={this.changeShelf}/>
+                    <Bookshelf books={read} title="Read" onChangeShelf={this.changeShelf}/>
+                </div>
             </div>
         )
     }

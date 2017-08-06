@@ -9,15 +9,17 @@ export default class Bookshelf extends Component {
         const { books, title, onChangeShelf } = this.props
 
         return (
-            <div>
-                <h1>{title}</h1>
-                <ol>
-                    {books.map((book) => (
-                        <li key={ book.id }>
-                        <Book book={ book } bookshelf={ book.shelf } onChangeShelf={ onChangeShelf }/>
-                        </li>
-                    ))}
-                </ol>
+            <div className="bookshelf">
+                <h2 className="bookshelf-title">{title}</h2>
+                <div className="bookshelf-books">
+                    <ol className="books-grid">
+                        {books.map((book) => (
+                            <li key={ book.id }>
+                                <Book book={ book } bookshelf={ book.shelf } onChangeShelf={ onChangeShelf }/>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
             </div>
         )
     }
