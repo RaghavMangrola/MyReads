@@ -9,8 +9,8 @@ export default class SearchResults extends Component {
         const { books, onChangeShelf } = this.props
 
         return(
-            <div>
-                <ol>
+            <div className="search-books-results">
+                <ol className="books-grid">
                     {books.map((book) => (
                         <li key={ book.id }>
                         <Book book={book} bookshelf={book.shelf} onChangeShelf={onChangeShelf}/>

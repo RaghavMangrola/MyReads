@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
-import Bookshelf from './Bookshelf'
 import * as BooksAPI from './BooksAPI'
-import SearchBar from "./SearchBar"
-import SearchResults from "./SearchResults"
+import { Route } from 'react-router-dom'
 import './App.css'
-
-// TODO Create Searchbar Component
-// TODO Search 300ms after user is done typing
-// TODO Display Books on SearchResultsComponent
-// TODO Books need to be updated to display on current shelf
-// TODO Create Route
+import MainPage from "./Components/MainPage"
+import SearchPage from "./Components/SearchPage"
 
 export default class App extends Component {
 
@@ -29,6 +23,9 @@ export default class App extends Component {
     }
 
     changeShelf = (book, shelf) => {
+
+        console.log(book)
+
         book.shelf = shelf
 
         this.setState((state) => {
@@ -48,22 +45,17 @@ export default class App extends Component {
 
         const { books, searchResults } = this.state
 
-        const currentlyReading = books.filter((book) => book.shelf === "currentlyReading")
-        const wantToRead = books.filter((book) => book.shelf === "wantToRead")
-        const read = books.filter((book) => book.shelf === "read")
-
         return (
             <div className="app">
-                <div className="list-books-title">
-                    <h1>MyReads</h1>
-                </div>
-                {/*<SearchBar onSearch={this.searchBooks}/>*/}
-                {/*<SearchResults books={searchResults} onChangeShelf={this.changeShelf}/>*/}
-                <div className="list-books-content">
-                    <Bookshelf books={currentlyReading} title="Currently Reading" onChangeShelf={this.changeShelf}/>
-                    <Bookshelf books={wantToRead} title="Want To Read" onChangeShelf={this.changeShelf}/>
-                    <Bookshelf books={read} title="Read" onChangeShelf={this.changeShelf}/>
-                </div>
+
+                <Route exact path="/" render={ () => (
+                    <MainPage books={books} onChangeShelf={this.changeShelf}/>
+                    )}
+                />
+
+                <Route exact path="/search" render={ () => (
+                    <SearchPage onSearch={this.searchBooks} searchResults={searchResults} onChangeShelf={this.changeShelf}/>
+                    )}/>
             </div>
         )
     }
