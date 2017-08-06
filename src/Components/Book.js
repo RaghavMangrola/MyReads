@@ -6,7 +6,7 @@ export default class Book extends Component {
     render() {
 
         const { book, bookshelf, onChangeShelf } = this.props
-
+        console.log(book.title + " " + book.shelf)
         return(
             <div className="book">
                 <div className="book-top">

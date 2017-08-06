@@ -24,19 +24,19 @@ export default class App extends Component {
 
     changeShelf = (book, shelf) => {
 
-        console.log(book)
+        BooksAPI.update(book, shelf).then(() => {
 
-        book.shelf = shelf
+            book.shelf = shelf
 
-        this.setState((state) => {
-            state.books.filter((b) => b.id !== book.id).concat(book)
+            let books = this.state.books.filter((b) => b.id !== book.id).concat(book)
+
+            this.setState( {books} )
         })
-
-        BooksAPI.update(book, shelf)
     }
 
     searchBooks = (query) => {
         BooksAPI.search(query, 10).then((searchResults) => {
+            console.log(searchResults)
             this.setState({ searchResults })
         })
     }
